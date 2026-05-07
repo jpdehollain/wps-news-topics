@@ -3,15 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stage 1 News Topics</title>
+<title>WPS News Topics</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { min-height: 100vh; background: linear-gradient(135deg, #e0f2fe 0%, #f0fdf4 100%); font-family: system-ui, sans-serif; padding: 24px 16px; display: flex; justify-content: center; }
   .container { max-width: 480px; width: 100%; }
-  .header { text-align: center; margin-bottom: 24px; }
+  .header { text-align: center; margin-bottom: 20px; }
   .header .emoji { font-size: 40px; }
   .header h1 { font-size: 22px; font-weight: 700; color: #1e3a5f; margin: 8px 0 4px; }
   .header p { color: #64748b; font-size: 14px; }
+
+  /* Tab row */
+  .tab-row { display: flex; gap: 8px; margin-bottom: 20px; align-items: center; }
+  .tabs { display: flex; gap: 8px; flex: 1; flex-wrap: wrap; }
+  .tab { flex: 1; padding: 10px 8px; border-radius: 12px; border: 2px solid transparent; background: white; font-size: 14px; font-weight: 600; color: #64748b; cursor: pointer; text-align: center; box-shadow: 0 1px 6px rgba(0,0,0,0.06); transition: all 0.15s; white-space: nowrap; }
+  .tab:hover { border-color: #93c5fd; color: #1e40af; }
+  .tab.active { background: #1e3a5f; color: white; border-color: #1e3a5f; }
+  .btn-choose { padding: 10px 12px; border-radius: 12px; border: 2px dashed #cbd5e1; background: transparent; font-size: 13px; font-weight: 600; color: #94a3b8; cursor: pointer; white-space: nowrap; transition: all 0.15s; }
+  .btn-choose:hover { border-color: #93c5fd; color: #1e40af; }
+
+  /* Modal */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 100; align-items: center; justify-content: center; padding: 24px; }
+  .modal-overlay.open { display: flex; }
+  .modal { background: white; border-radius: 20px; padding: 24px; width: 100%; max-width: 360px; box-shadow: 0 8px 32px rgba(0,0,0,0.15); }
+  .modal h2 { font-size: 18px; font-weight: 700; color: #1e3a5f; margin-bottom: 6px; }
+  .modal p { font-size: 13px; color: #64748b; margin-bottom: 20px; }
+  .modal-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+  .modal-option { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 12px; border: 2px solid #e2e8f0; cursor: pointer; transition: all 0.15s; }
+  .modal-option:hover { border-color: #93c5fd; }
+  .modal-option.checked { border-color: #1e3a5f; background: #f0f7ff; }
+  .modal-option input[type=checkbox] { width: 18px; height: 18px; accent-color: #1e3a5f; cursor: pointer; flex-shrink: 0; }
+  .modal-option label { font-size: 15px; font-weight: 600; color: #1e3a5f; cursor: pointer; flex: 1; }
+  .modal-option .sub { font-size: 12px; color: #94a3b8; }
+  .modal-actions { display: flex; gap: 10px; }
+  .btn-save { flex: 1; padding: 12px; border-radius: 12px; border: none; background: #1e3a5f; color: white; font-size: 15px; font-weight: 700; cursor: pointer; }
+  .btn-save:hover { background: #1e40af; }
+  .btn-cancel { padding: 12px 16px; border-radius: 12px; border: 2px solid #e2e8f0; background: transparent; font-size: 15px; font-weight: 600; color: #64748b; cursor: pointer; }
+  .btn-cancel:hover { border-color: #94a3b8; }
+  .warn { font-size: 12px; color: #dc2626; margin-top: 10px; text-align: center; display: none; }
+
+  /* Content */
   .card { background: white; border-radius: 16px; padding: 16px 20px; margin-bottom: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
   .card .label { font-size: 13px; color: #94a3b8; font-weight: 500; }
   .card .value { font-size: 16px; font-weight: 600; color: #1e3a5f; margin-top: 2px; }
@@ -41,20 +72,144 @@
 <div class="container">
   <div class="header">
     <div class="emoji">🎒</div>
-    <h1 id="app-title">Stage 1 News Topics</h1>
+    <h1>News Topics</h1>
     <p id="app-subtitle"></p>
   </div>
+
+  <div class="tab-row">
+    <div class="tabs" id="tabs"></div>
+    <button class="btn-choose" onclick="openModal()">Choose stages</button>
+  </div>
+
   <div class="card">
     <div class="label">TODAY</div>
     <div class="value" id="today-date"></div>
   </div>
+
   <div id="current-topic-container"></div>
-  <div class="section-title">All Topics</div>
-  <div id="all-topics"></div>
+  <div id="all-topics-section" style="display:none">
+    <div class="section-title">All Topics</div>
+    <div id="all-topics"></div>
+  </div>
   <div class="footer" id="footer"></div>
 </div>
 
+<!-- Modal -->
+<div class="modal-overlay" id="modal-overlay" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <h2>Choose your tabs</h2>
+    <p>Select the year groups you want to see. Your choice will be remembered.</p>
+    <div class="modal-options" id="modal-options"></div>
+    <div class="warn" id="modal-warn">Please keep at least one tab selected.</div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-save" onclick="saveModal()">Save</button>
+    </div>
+  </div>
+</div>
+
 <script>
+const STAGES = [
+  { file: "kindy.json",  label: "Kindy" },
+  { file: "stage1.json", label: "Stage 1" },
+];
+
+const STORAGE_KEY = "waverley_visible_tabs";
+const ACTIVE_KEY  = "waverley_active_tab";
+const cache = {};
+
+// --- Persistence ---
+function getVisible() {
+  try {
+    const v = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if (Array.isArray(v) && v.length > 0) return v;
+  } catch(e) {}
+  return STAGES.map(s => s.file); // default: all visible
+}
+
+function saveVisible(arr) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+}
+
+function getLastActive(visible) {
+  const saved = localStorage.getItem(ACTIVE_KEY);
+  if (saved && visible.includes(saved)) return saved;
+  return visible[0];
+}
+
+function saveActive(file) {
+  localStorage.setItem(ACTIVE_KEY, file);
+}
+
+// --- Tabs ---
+function buildTabs() {
+  const visible = getVisible();
+  const activeFile = getLastActive(visible);
+  const tabsEl = document.getElementById("tabs");
+  tabsEl.innerHTML = "";
+  visible.forEach(file => {
+    const stage = STAGES.find(s => s.file === file);
+    if (!stage) return;
+    const div = document.createElement("div");
+    div.className = "tab" + (file === activeFile ? " active" : "");
+    div.textContent = stage.label;
+    div.dataset.file = file;
+    div.onclick = () => switchTab(div);
+    tabsEl.appendChild(div);
+  });
+  loadStage(activeFile);
+}
+
+function switchTab(el) {
+  document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+  el.classList.add("active");
+  saveActive(el.dataset.file);
+  loadStage(el.dataset.file);
+}
+
+// --- Modal ---
+function openModal() {
+  const visible = getVisible();
+  const optionsEl = document.getElementById("modal-options");
+  optionsEl.innerHTML = "";
+  STAGES.forEach(s => {
+    const checked = visible.includes(s.file);
+    const div = document.createElement("div");
+    div.className = "modal-option" + (checked ? " checked" : "");
+    div.innerHTML = `
+      <input type="checkbox" id="chk_${s.file}" value="${s.file}" ${checked ? "checked" : ""}>
+      <label for="chk_${s.file}">${s.label}</label>
+    `;
+    div.querySelector("input").addEventListener("change", () => {
+      div.classList.toggle("checked", div.querySelector("input").checked);
+      document.getElementById("modal-warn").style.display = "none";
+    });
+    optionsEl.appendChild(div);
+  });
+  document.getElementById("modal-warn").style.display = "none";
+  document.getElementById("modal-overlay").classList.add("open");
+}
+
+function closeModal() {
+  document.getElementById("modal-overlay").classList.remove("open");
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById("modal-overlay")) closeModal();
+}
+
+function saveModal() {
+  const checked = [...document.querySelectorAll("#modal-options input:checked")].map(i => i.value);
+  if (checked.length === 0) {
+    document.getElementById("modal-warn").style.display = "block";
+    return;
+  }
+  saveVisible(checked);
+  closeModal();
+  buildTabs();
+}
+
+// --- Data & render ---
 function parseDate(str) {
   const [y, m, d] = str.split("-").map(Number);
   return new Date(y, m - 1, d);
@@ -70,20 +225,25 @@ function getCurrentTopic(weeks, now) {
 function render(data) {
   const { school, stage, term, weeks } = data;
   const now = new Date();
+  document.getElementById("app-subtitle").textContent = `${school}, ${term}`;
+  const container = document.getElementById("current-topic-container");
+  const allSection = document.getElementById("all-topics-section");
+  const allDiv = document.getElementById("all-topics");
+  const footer = document.getElementById("footer");
+  allDiv.innerHTML = "";
+  container.innerHTML = "";
 
-  // Sort weeks by date just in case
+  if (!weeks || weeks.length === 0) {
+    container.innerHTML = `<div class="neutral">📋 No topics uploaded yet for ${stage}.<br><small>Check back soon!</small></div>`;
+    allSection.style.display = "none";
+    footer.textContent = "";
+    return;
+  }
+
   weeks.sort((a, b) => parseDate(a.weekStart) - parseDate(b.weekStart));
-
   const termStart = parseDate(weeks[0].weekStart);
   const lastWeekStart = parseDate(weeks[weeks.length - 1].weekStart);
   const termEnd = new Date(lastWeekStart.getFullYear(), lastWeekStart.getMonth(), lastWeekStart.getDate() + 6);
-
-  document.getElementById("app-title").textContent = `${stage} News Topics`;
-  document.getElementById("app-subtitle").textContent = `${school} · ${term}`;
-  document.getElementById("today-date").textContent = now.toLocaleDateString("en-AU", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
-  document.getElementById("footer").textContent = `Topics from ${school} ${stage} letter, ${term}`;
-
-  const container = document.getElementById("current-topic-container");
   const current = getCurrentTopic(weeks, now);
 
   if (now < termStart) {
@@ -98,7 +258,6 @@ function render(data) {
       </div>`;
   }
 
-  const allDiv = document.getElementById("all-topics");
   weeks.forEach(t => {
     const isCurrent = current && t.weekStart === current.weekStart;
     const row = document.createElement("div");
@@ -110,19 +269,29 @@ function render(data) {
     `;
     allDiv.appendChild(row);
   });
+
+  allSection.style.display = "block";
+  footer.textContent = `${stage} topics from ${school}, ${term}`;
 }
 
-// Fetch topics.json (works on GitHub Pages; also works locally if served)
-fetch("topics.json")
-  .then(r => {
-    if (!r.ok) throw new Error("Could not load topics.json");
-    return r.json();
-  })
-  .then(render)
-  .catch(err => {
-    document.getElementById("current-topic-container").innerHTML =
-      `<div class="error">⚠️ Could not load topics.json.<br>Make sure the file is in the same folder as index.html.<br><small>${err.message}</small></div>`;
-  });
+function showError(stage) {
+  document.getElementById("current-topic-container").innerHTML =
+    `<div class="error">⚠️ Could not load data for ${stage}.<br><small>Make sure the JSON file is in the same folder as index.html.</small></div>`;
+  document.getElementById("all-topics-section").style.display = "none";
+  document.getElementById("footer").textContent = "";
+}
+
+function loadStage(file) {
+  if (cache[file]) { render(cache[file]); return; }
+  fetch(file)
+    .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+    .then(data => { cache[file] = data; render(data); })
+    .catch(() => showError(file.replace(".json", "")));
+}
+
+// --- Init ---
+document.getElementById("today-date").textContent = new Date().toLocaleDateString("en-AU", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+buildTabs();
 </script>
 </body>
 </html>

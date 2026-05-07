@@ -1,0 +1,67 @@
+{
+  "school": "Waverley Public School",
+  "stage": "Kindy",
+  "term": "Term 2, 2026",
+  "weeks": [
+    {
+      "label": "Week 2",
+      "weekStart": "2026-04-27",
+      "topic": "Free choice",
+      "free": true
+    },
+    {
+      "label": "Week 3",
+      "weekStart": "2026-05-04",
+      "topic": "Choose a plant and describe what it would need to survive.",
+      "free": false
+    },
+    {
+      "label": "Week 4",
+      "weekStart": "2026-05-11",
+      "topic": "Bring in a photograph or drawing of your family’s or a friend’s pet. Discuss how you would care for it.",
+      "free": false
+    },
+    {
+      "label": "Week 5",
+      "weekStart": "2026-05-18",
+      "topic": "Think about the pet you chose last week for news. If you had to create a shelter for it, what would the shelter need to have and why?",
+      "free": false
+    },
+    {
+      "label": "Week 6",
+      "weekStart": "2026-05-25",
+      "topic": "Choose an Australian native animal and explain its habitat and diet. Extension: discuss any adaptations the animal needs to survive in the current environment.",
+      "free": false
+    },
+    {
+      "label": "Week 7",
+      "weekStart": "2026-06-01",
+      "topic": "Pretend you are packing a suitcase to go on a holiday. Share with the class the items you would take (discuss needs and wants).",
+      "free": false
+    },
+    {
+      "label": "Week 8",
+      "weekStart": "2026-06-08",
+      "topic": "If you could create the best garden or zoo, what would be in it and how would you take care of the garden or zoo?",
+      "free": false
+    },
+    {
+      "label": "Week 9",
+      "weekStart": "2026-06-15",
+      "topic": "Research three interesting facts about a chosen living thing and share your findings.",
+      "free": false
+    },
+    {
+      "label": "Week 10",
+      "weekStart": "2026-06-22",
+      "topic": "Discuss three facts that you have learnt about butterflies this term. (e.g. the life cycle)",
+      "free": false
+    },
+    {
+      "label": "Week 11",
+      "weekStart": "2026-06-29",
+      "topic": "Free choice",
+      "free": true
+    }
+  ]
+}
