@@ -1,0 +1,67 @@
+{
+  "school": "Waverley Public School",
+  "stage": "Stage 1",
+  "term": "Term 2, 2026",
+  "weeks": [
+    {
+      "label": "Week 2",
+      "weekStart": "2026-04-27",
+      "topic": "Free choice",
+      "free": true
+    },
+    {
+      "label": "Week 3",
+      "weekStart": "2026-05-04",
+      "topic": "Choose a living thing found in your local area (like a bird, plant, or insect) and explain how it survives in its habitat.",
+      "free": false
+    },
+    {
+      "label": "Week 4",
+      "weekStart": "2026-05-11",
+      "topic": "Free choice",
+      "free": true
+    },
+    {
+      "label": "Week 5",
+      "weekStart": "2026-05-18",
+      "topic": "Talk about a living thing that lives in an unusual place (e.g. underwater, in a desert, or high in the mountains). What features or adaptations help it survive there?",
+      "free": false
+    },
+    {
+      "label": "Week 6",
+      "weekStart": "2026-05-25",
+      "topic": "Explain the life cycle of a living thing you find interesting (like a tree, fish, or insect). What stages does it go through as it grows?",
+      "free": false
+    },
+    {
+      "label": "Week 7",
+      "weekStart": "2026-06-01",
+      "topic": "Free choice",
+      "free": true
+    },
+    {
+      "label": "Week 8",
+      "weekStart": "2026-06-08",
+      "topic": "Suggest a simple action we could take to help living things in our community (like creating a bird feeder, planting flowers, or picking up litter).",
+      "free": false
+    },
+    {
+      "label": "Week 9",
+      "weekStart": "2026-06-15",
+      "topic": "Free choice",
+      "free": true
+    },
+    {
+      "label": "Week 10",
+      "weekStart": "2026-06-22",
+      "topic": "Describe how living things work together in their environment. For example, how do bees and flowers help each other? Or fish and coral?",
+      "free": false
+    },
+    {
+      "label": "Week 11",
+      "weekStart": "2026-06-29",
+      "topic": "Free choice",
+      "free": true
+    }
+  ]
+}

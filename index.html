@@ -32,16 +32,17 @@
   .topic-row.current .week { color: #1e40af; }
   .topic-row .text { font-size: 14px; color: #334155; line-height: 1.5; flex: 1; }
   .arrow { font-size: 18px; margin-left: auto; }
+  .neutral { background: white; border-radius: 16px; padding: 20px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.08); color: #64748b; margin-bottom: 16px; }
+  .error { background: #fee2e2; border-radius: 16px; padding: 20px; text-align: center; color: #991b1b; margin-bottom: 16px; font-size: 14px; }
   .footer { text-align: center; font-size: 12px; color: #94a3b8; margin-top: 20px; }
-  .neutral { background: white; border-radius: 16px; padding: 20px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.08); color: #64748b; }
 </style>
 </head>
 <body>
 <div class="container">
   <div class="header">
     <div class="emoji">🎒</div>
-    <h1>Stage 1 News Topics</h1>
-    <p>Waverley Public School · Term 2, 2026</p>
+    <h1 id="app-title">Stage 1 News Topics</h1>
+    <p id="app-subtitle"></p>
   </div>
   <div class="card">
     <div class="label">TODAY</div>
@@ -50,71 +51,78 @@
   <div id="current-topic-container"></div>
   <div class="section-title">All Topics</div>
   <div id="all-topics"></div>
-  <div class="footer">Topics from Waverley PS Stage 1 letter, Term 2 2026</div>
+  <div class="footer" id="footer"></div>
 </div>
 
 <script>
-const topics = [
-  { weekStart: "2026-04-27", label: "Week 2", topic: "Free choice 🎉", free: true },
-  { weekStart: "2026-05-04", label: "Week 3", topic: "Choose a living thing found in your local area (like a bird, plant, or insect) and explain how it survives in its habitat.", free: false },
-  { weekStart: "2026-05-11", label: "Week 4", topic: "Free choice 🎉", free: true },
-  { weekStart: "2026-05-18", label: "Week 5", topic: "Talk about a living thing that lives in an unusual place (e.g. underwater, in a desert, or high in the mountains). What features or adaptations help it survive there?", free: false },
-  { weekStart: "2026-05-25", label: "Week 6", topic: "Explain the life cycle of a living thing you find interesting (like a tree, fish, or insect). What stages does it go through as it grows?", free: false },
-  { weekStart: "2026-06-01", label: "Week 7", topic: "Free choice 🎉", free: true },
-  { weekStart: "2026-06-08", label: "Week 8", topic: "Suggest a simple action we could take to help living things in our community (like creating a bird feeder, planting flowers, or picking up litter).", free: false },
-  { weekStart: "2026-06-15", label: "Week 9", topic: "Free choice 🎉", free: true },
-  { weekStart: "2026-06-22", label: "Week 10", topic: "Describe how living things work together in their environment. For example, how do bees and flowers help each other? Or fish and coral?", free: false },
-  { weekStart: "2026-06-29", label: "Week 11", topic: "Free choice 🎉", free: true },
-];
-
 function parseDate(str) {
   const [y, m, d] = str.split("-").map(Number);
   return new Date(y, m - 1, d);
 }
 
-function getCurrentTopic(now) {
-  for (let i = topics.length - 1; i >= 0; i--) {
-    if (now >= parseDate(topics[i].weekStart)) return topics[i];
+function getCurrentTopic(weeks, now) {
+  for (let i = weeks.length - 1; i >= 0; i--) {
+    if (now >= parseDate(weeks[i].weekStart)) return weeks[i];
   }
   return null;
 }
 
-const now = new Date();
-const termEnd = new Date(2026, 6, 3); // 3 July
-const termStart = parseDate(topics[0].weekStart);
+function render(data) {
+  const { school, stage, term, weeks } = data;
+  const now = new Date();
 
-// Today's date
-document.getElementById("today-date").textContent = now.toLocaleDateString("en-AU", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+  // Sort weeks by date just in case
+  weeks.sort((a, b) => parseDate(a.weekStart) - parseDate(b.weekStart));
 
-// Current topic
-const container = document.getElementById("current-topic-container");
-const current = getCurrentTopic(now);
+  const termStart = parseDate(weeks[0].weekStart);
+  const lastWeekStart = parseDate(weeks[weeks.length - 1].weekStart);
+  const termEnd = new Date(lastWeekStart.getFullYear(), lastWeekStart.getMonth(), lastWeekStart.getDate() + 6);
 
-if (now < termStart) {
-  container.innerHTML = `<div class="neutral">Term hasn't started yet! First topic week begins 27 April.</div>`;
-} else if (now > termEnd) {
-  container.innerHTML = `<div class="neutral">Term 2 has finished! Great work this term. 🎉</div>`;
-} else if (current) {
-  container.innerHTML = `
-    <div class="current-topic ${current.free ? 'free' : 'set'}">
-      <div class="week-label">${current.label} · This week's topic</div>
-      <div class="topic-text">${current.topic}</div>
-    </div>`;
+  document.getElementById("app-title").textContent = `${stage} News Topics`;
+  document.getElementById("app-subtitle").textContent = `${school} · ${term}`;
+  document.getElementById("today-date").textContent = now.toLocaleDateString("en-AU", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+  document.getElementById("footer").textContent = `Topics from ${school} ${stage} letter, ${term}`;
+
+  const container = document.getElementById("current-topic-container");
+  const current = getCurrentTopic(weeks, now);
+
+  if (now < termStart) {
+    container.innerHTML = `<div class="neutral">Term hasn't started yet! First topic week begins ${termStart.toLocaleDateString("en-AU", { day: "numeric", month: "long" })}.</div>`;
+  } else if (now > termEnd) {
+    container.innerHTML = `<div class="neutral">Term has finished! Great work this term. 🎉</div>`;
+  } else if (current) {
+    container.innerHTML = `
+      <div class="current-topic ${current.free ? 'free' : 'set'}">
+        <div class="week-label">${current.label} · This week's topic</div>
+        <div class="topic-text">${current.free ? '🎉 ' : ''}${current.topic}</div>
+      </div>`;
+  }
+
+  const allDiv = document.getElementById("all-topics");
+  weeks.forEach(t => {
+    const isCurrent = current && t.weekStart === current.weekStart;
+    const row = document.createElement("div");
+    row.className = `topic-row ${isCurrent ? 'current ' + (t.free ? 'free' : 'set') : ''}`;
+    row.innerHTML = `
+      <div class="week">${t.label}</div>
+      <div class="text">${t.free ? '🎉 ' : ''}${t.topic}</div>
+      ${isCurrent ? '<div class="arrow">👈</div>' : ''}
+    `;
+    allDiv.appendChild(row);
+  });
 }
 
-// All topics list
-const allDiv = document.getElementById("all-topics");
-topics.forEach(t => {
-  const isCurrent = current && t.weekStart === current.weekStart;
-  const row = document.createElement("div");
-  row.className = `topic-row ${isCurrent ? 'current ' + (t.free ? 'free' : 'set') : ''}`;
-  row.innerHTML = `
-    <div class="week">${t.label}</div>
-    <div class="text">${t.topic}</div>
-    ${isCurrent ? '<div class="arrow">👈</div>' : ''}
-  `;
-  allDiv.appendChild(row);
-});
+// Fetch topics.json (works on GitHub Pages; also works locally if served)
+fetch("topics.json")
+  .then(r => {
+    if (!r.ok) throw new Error("Could not load topics.json");
+    return r.json();
+  })
+  .then(render)
+  .catch(err => {
+    document.getElementById("current-topic-container").innerHTML =
+      `<div class="error">⚠️ Could not load topics.json.<br>Make sure the file is in the same folder as index.html.<br><small>${err.message}</small></div>`;
+  });
 </script>
 </body>
 </html>
