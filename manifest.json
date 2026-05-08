@@ -1,7 +1,10 @@
 {
   "name": "WPS News Topics",
   "short_name": "WPS News",
-  "icons": [{ "src": "logo.png", "sizes": "512x512", "type": "image/png" }],
+  "icons": [
+    { "src": "logo.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "logo-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
   "start_url": ".",
   "display": "standalone",
   "background_color": "#ffffff"
