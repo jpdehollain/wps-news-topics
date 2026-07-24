@@ -1,65 +1,59 @@
 {
   "school": "Waverley Public School",
   "stage": "Stage 1",
-  "term": "Term 2, 2026",
+  "term": "Term 3, 2026",
   "weeks": [
     {
       "label": "Week 2",
-      "weekStart": "2026-04-27",
-      "topic": "Free choice",
-      "free": true
+      "weekStart": "2026-07-27",
+      "topic": "Why pets are important for families",
+      "free": false
     },
     {
       "label": "Week 3",
-      "weekStart": "2026-05-04",
-      "topic": "Choose a living thing found in your local area (like a bird, plant, or insect) and explain how it survives in its habitat.",
+      "weekStart": "2026-08-03",
+      "topic": "Why we should have longer recess at school",
       "free": false
     },
     {
       "label": "Week 4",
-      "weekStart": "2026-05-11",
-      "topic": "Free choice",
-      "free": true
+      "weekStart": "2026-08-10",
+      "topic": "Why it is important to be kind to others",
+      "free": false
     },
     {
       "label": "Week 5",
-      "weekStart": "2026-05-18",
-      "topic": "Talk about a living thing that lives in an unusual place (e.g. underwater, in a desert, or high in the mountains). What features or adaptations help it survive there?",
+      "weekStart": "2026-08-17",
+      "topic": "Speech finals in class. Students may choose to repeat one of the persuasive topics from previous weeks or write a new persuasive speech on a topic of their choice.",
       "free": false
     },
     {
       "label": "Week 6",
-      "weekStart": "2026-05-25",
-      "topic": "Explain the life cycle of a living thing you find interesting (like a tree, fish, or insect). What stages does it go through as it grows?",
-      "free": false
+      "weekStart": "2026-08-24",
+      "topic": "Free choice",
+      "free": true
     },
     {
       "label": "Week 7",
-      "weekStart": "2026-06-01",
+      "weekStart": "2026-08-31",
       "topic": "Free choice",
       "free": true
     },
     {
       "label": "Week 8",
-      "weekStart": "2026-06-08",
-      "topic": "Suggest a simple action we could take to help living things in our community (like creating a bird feeder, planting flowers, or picking up litter).",
+      "weekStart": "2026-09-07",
+      "topic": "Why reading books is better than watching TV",
       "free": false
     },
     {
       "label": "Week 9",
-      "weekStart": "2026-06-15",
-      "topic": "Free choice",
-      "free": true
-    },
-    {
-      "label": "Week 10",
-      "weekStart": "2026-06-22",
-      "topic": "Describe how living things work together in their environment. For example, how do bees and flowers help each other? Or fish and coral?",
+      "weekStart": "2026-09-14",
+      "topic": "Why everyone should help keep our school clean",
       "free": false
     },
     {
-      "label": "Week 11",
-      "weekStart": "2026-06-29",
+      "label": "Week 10",
+      "weekStart": "2026-09-21",
       "topic": "Free choice",
       "free": true
     }
