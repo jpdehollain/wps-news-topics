@@ -1,66 +1,66 @@
 {
   "school": "Waverley Public School",
   "stage": "Kindy",
-  "term": "Term 2, 2026",
+  "term": "Term 3, 2026",
   "weeks": [
     {
+      "label": "Week 1",
+      "weekStart": "2026-07-20",
+      "topic": "Recount of the school holidays",
+      "free": false
+    },
+    {
       "label": "Week 2",
-      "weekStart": "2026-04-27",
-      "topic": "Free choice",
-      "free": true
+      "weekStart": "2026-07-27",
+      "topic": "Choose a place to talk about that is special to you.",
+      "free": false
     },
     {
       "label": "Week 3",
-      "weekStart": "2026-05-04",
-      "topic": "Choose a plant and describe what it would need to survive.",
+      "weekStart": "2026-08-03",
+      "topic": "What do you love about coming to school?",
       "free": false
     },
     {
       "label": "Week 4",
-      "weekStart": "2026-05-11",
-      "topic": "Bring in a photograph or drawing of your family’s or a friend’s pet. Discuss how you would care for it.",
-      "free": false
+      "weekStart": "2026-08-10",
+      "topic": "Free choice \u2013 students choose their own topic",
+      "free": true
     },
     {
       "label": "Week 5",
-      "weekStart": "2026-05-18",
-      "topic": "Think about the pet you chose last week for news. If you had to create a shelter for it, what would the shelter need to have and why?",
+      "weekStart": "2026-08-17",
+      "topic": "Class Public Speaking Competition \u2013 1 minute speech on a topic of choice (all students, in class)",
       "free": false
     },
     {
       "label": "Week 6",
-      "weekStart": "2026-05-25",
-      "topic": "Choose an Australian native animal and explain its habitat and diet. Extension: discuss any adaptations the animal needs to survive in the current environment.",
+      "weekStart": "2026-08-24",
+      "topic": "Bring in your favourite book and share what you love about it.",
       "free": false
     },
     {
       "label": "Week 7",
-      "weekStart": "2026-06-01",
-      "topic": "Pretend you are packing a suitcase to go on a holiday. Share with the class the items you would take (discuss needs and wants).",
+      "weekStart": "2026-08-31",
+      "topic": "Pick a toy from home and tell the class how it moves. Does it roll, spin, need a remote control to make it move?",
       "free": false
     },
     {
       "label": "Week 8",
-      "weekStart": "2026-06-08",
-      "topic": "If you could create the best garden or zoo, what would be in it and how would you take care of the garden or zoo?",
+      "weekStart": "2026-09-07",
+      "topic": "How would you care for a beach or park if you were visiting one?",
       "free": false
     },
     {
       "label": "Week 9",
-      "weekStart": "2026-06-15",
-      "topic": "Research three interesting facts about a chosen living thing and share your findings.",
+      "weekStart": "2026-09-14",
+      "topic": "Where is your favourite place to visit? What do you do there?",
       "free": false
     },
     {
       "label": "Week 10",
-      "weekStart": "2026-06-22",
-      "topic": "Discuss three facts that you have learnt about butterflies this term. (e.g. the life cycle)",
-      "free": false
-    },
-    {
-      "label": "Week 11",
-      "weekStart": "2026-06-29",
-      "topic": "Free choice",
+      "weekStart": "2026-09-21",
+      "topic": "Free choice \u2013 students choose their own topic",
       "free": true
     }
   ]
