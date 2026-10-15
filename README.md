@@ -11,14 +11,14 @@ waverley-news-topics/
 ├── index.html       # The app (no need to edit this)
 ├── kindy.json       # Kindy topic data — update each term
 ├── stage1.json      # Stage 1 topic data — update each term
-├── pdfs/            # Optional: store the original PDF letters here
+├── pdfs/            # Optional (untracked): locally store the original PDF letters here
 └── README.md        # This file
 ```
 
 ## Updating each term
 
 1. **Edit the relevant JSON file** (e.g. `stage1.json`) with the new term's data
-2. **Optionally upload the new PDF** to the `pdfs/` folder for reference
+2. **Optional: locally store the new PDF** to the `pdf/` folder for reference
 3. **Commit and push** — GitHub Pages updates automatically within a minute
 
 ### JSON file format

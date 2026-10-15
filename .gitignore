@@ -1,0 +1,5 @@
+# Original school letters stay on this computer only
+pdf/
+
+# Backup files
+*.bak
