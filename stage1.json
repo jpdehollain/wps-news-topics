@@ -1,60 +1,66 @@
 {
   "school": "Waverley Public School",
   "stage": "Stage 1",
-  "term": "Term 3, 2026",
+  "term": "Term 4, 2026",
   "weeks": [
     {
+      "label": "Week 1",
+      "weekStart": "2026-10-12",
+      "topic": "Recount of the school holidays",
+      "free": false
+    },
+    {
       "label": "Week 2",
-      "weekStart": "2026-07-27",
-      "topic": "Why pets are important for families",
+      "weekStart": "2026-10-19",
+      "topic": "What is something that you have improved on or learned this year?",
       "free": false
     },
     {
       "label": "Week 3",
-      "weekStart": "2026-08-03",
-      "topic": "Why we should have longer recess at school",
-      "free": false
-    },
-    {
-      "label": "Week 4",
-      "weekStart": "2026-08-10",
-      "topic": "Why it is important to be kind to others",
-      "free": false
-    },
-    {
-      "label": "Week 5",
-      "weekStart": "2026-08-17",
-      "topic": "Speech finals in class. Students may choose to repeat one of the persuasive topics from previous weeks or write a new persuasive speech on a topic of their choice.",
-      "free": false
-    },
-    {
-      "label": "Week 6",
-      "weekStart": "2026-08-24",
+      "weekStart": "2026-10-26",
       "topic": "Free choice",
       "free": true
     },
     {
+      "label": "Week 4",
+      "weekStart": "2026-11-02",
+      "topic": "What was the most challenging thing you did this year?",
+      "free": false
+    },
+    {
+      "label": "Week 5",
+      "weekStart": "2026-11-09",
+      "topic": "Free choice",
+      "free": true
+    },
+    {
+      "label": "Week 6",
+      "weekStart": "2026-11-16",
+      "topic": "What has been your favourite memory at school this year?",
+      "free": false
+    },
+    {
       "label": "Week 7",
-      "weekStart": "2026-08-31",
+      "weekStart": "2026-11-23",
       "topic": "Free choice",
       "free": true
     },
     {
       "label": "Week 8",
-      "weekStart": "2026-09-07",
-      "topic": "Why reading books is better than watching TV",
+      "weekStart": "2026-11-30",
+      "topic": "What is something that you are grateful for at school?",
       "free": false
     },
     {
       "label": "Week 9",
-      "weekStart": "2026-09-14",
-      "topic": "Why everyone should help keep our school clean",
-      "free": false
+      "weekStart": "2026-12-07",
+      "topic": "Free choice",
+      "free": true
     },
     {
       "label": "Week 10",
-      "weekStart": "2026-09-21",
-      "topic": "Free choice",
+      "weekStart": "2026-12-14",
+      "topic": "What is something that you are looking forward to next year?",
       "free": true
     }
   ]
