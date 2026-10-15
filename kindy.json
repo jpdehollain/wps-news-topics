@@ -2,5 +2,66 @@
   "school": "Waverley Public School",
   "stage": "Kindy",
   "term": "Term 4, 2026",
-  "weeks": []
+  "weeks": [
+    {
+      "label": "Week 1",
+      "weekStart": "2026-10-12",
+      "topic": "Recount of the school holidays",
+      "free": false
+    },
+    {
+      "label": "Week 2",
+      "weekStart": "2026-10-19",
+      "topic": "What is a kind act you have done and how did it make you feel?",
+      "free": false
+    },
+    {
+      "label": "Week 3",
+      "weekStart": "2026-10-26",
+      "topic": "Free choice \u2013 students choose their own topic",
+      "free": true
+    },
+    {
+      "label": "Week 4",
+      "weekStart": "2026-11-02",
+      "topic": "What do you want to be when you grow up?",
+      "free": false
+    },
+    {
+      "label": "Week 5",
+      "weekStart": "2026-11-09",
+      "topic": "Free choice \u2013 students choose their own topic",
+      "free": true
+    },
+    {
+      "label": "Week 6",
+      "weekStart": "2026-11-16",
+      "topic": "What is a holiday that your family celebrates? e.g. Christmas, Hanukkah, Lunar New Year",
+      "free": false
+    },
+    {
+      "label": "Week 7",
+      "weekStart": "2026-11-23",
+      "topic": "Free choice \u2013 students choose their own topic",
+      "free": true
+    },
+    {
+      "label": "Week 8",
+      "weekStart": "2026-11-30",
+      "topic": "How can we keep our school clean?",
+      "free": false
+    },
+    {
+      "label": "Week 9",
+      "weekStart": "2026-12-07",
+      "topic": "What have you enjoyed the most about Kindergarten?",
+      "free": false
+    },
+    {
+      "label": "Week 10",
+      "weekStart": "2026-12-14",
+      "topic": "What are you looking forward to in Year 1?",
+      "free": false
+    }
+  ]
 }
